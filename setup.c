@@ -5,7 +5,7 @@ int binSetup(FILE *configFile)
     printf("Where would you like your bins?: ");
     char binPath[500];
     scanf("%s", binPath);
-    fprintf(configFile, "binPath: %s\n", binPath);
+    fprintf(configFile, "binsPath: %s\n", binPath);
 }
 
 int main(int argc, char *argv[])
