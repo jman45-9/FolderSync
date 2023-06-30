@@ -5,7 +5,7 @@
 // @param configValue: pointer to the string where you want to store the value of the pair
 void getConfigValue(char configKey[], char **configValue)
 {
-    FILE *configFile = fopen("config.yaml", "r");
+    FILE *configFile = getConfigPath();
     int foundValue = 0;
     char fullConfigKey[50];
     strcpy(fullConfigKey, configKey);
@@ -27,6 +27,16 @@ void getConfigValue(char configKey[], char **configValue)
         fgets(trash, 600, configFile);
     }
     fclose(configFile);
+}
+
+FILE *getConfigPath()
+{
+    char *lastBackslash = strrchr(_pgmptr, '\\');
+    if (lastBackslash != NULL)
+        *lastBackslash = '\0';
+
+    strcat(_pgmptr, "\\config.yaml");
+    return fopen(_pgmptr, "r");
 }
 
 // @param path: file path to check validity of

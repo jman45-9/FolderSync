@@ -27,4 +27,5 @@ void appDirectorySet(FILE *configFile)
     char appPath[500];
     scanf("%s", appPath);
     fprintf(configFile, "appPath: %s\n", appPath);
+    void writeInFileOps(appPath);
 }

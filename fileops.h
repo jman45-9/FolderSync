@@ -6,5 +6,6 @@
 
 void getConfigValue(char configKey[], char **configValue);
 int checkValidPath(char path[]);
+FILE *getConfigPath();
 
 #endif

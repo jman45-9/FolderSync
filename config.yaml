@@ -1,3 +1,4 @@
 # file contents are added when setup.exe is run
-binsPath: C:\test
 appPath: D:\apps
+binsPath: C:\test
+
