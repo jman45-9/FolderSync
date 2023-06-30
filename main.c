@@ -1,8 +1,9 @@
 #include "projectHeaders.h"
 
-int newBin(char binName[50], char newBinContent[500]);
-int removeBin(char binName[50]);
-int listBins();
+void newBin(char binName[50], char newBinContent[500]);
+void removeBin(char binName[50]);
+void listBins();
+void getBinContent(char binName[50], char copyDest[500]);
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,7 @@ int main(int argc, char *argv[])
     char operation[50];
     char binName[50];
     char newBinContent[500];
+    char copyDest[500];
     for (int i = 1; i < argc; i += 2)
     {
         if (i + 1 >= argc)
@@ -30,6 +32,10 @@ int main(int argc, char *argv[])
         {
             strcpy(newBinContent, argv[i + 1]);
         }
+        else if (!strcmp(argv[i], "--copyDest"))
+        {
+            strcpy(copyDest, argv[i + 1]);
+        }
         else
         {
             printf("%s is not a valid parameter.\n", argv[i]);
@@ -39,34 +45,29 @@ int main(int argc, char *argv[])
     }
 
     if (!strcmp("newBin", operation))
-    {
-        if (newBin(binName, newBinContent))
-            return 1;
-    }
+        newBin(binName, newBinContent);
+
     else if (!strcmp("rmBin", operation))
-    {
-        if (removeBin(binName))
-            return 1;
-    }
+        removeBin(binName);
+
     else if (!strcmp("list", operation))
-    {
-        if (listBins())
-            return 1;
-    }
+        listBins();
+
+    else if (!strcmp("getBin", operation))
+        getBinContent(binName, copyDest);
+
     else
-    {
         printf("Please use a valid operation. Use '--operation help' for a list of commands");
-    }
 
     return 0;
 }
 
-int newBin(char binName[50], char newBinContent[500])
+void newBin(char binName[50], char newBinContent[500])
 {
     if (!checkValidPath(newBinContent))
     {
         printf("Please enter a valid path with '--newBinContent'");
-        return 1;
+        exit(1);
     }
 
     char *binsPath = malloc(sizeof(char) * 500);
@@ -76,7 +77,7 @@ int newBin(char binName[50], char newBinContent[500])
     {
         printf("Please reconfigure 'binsPath' with a valid path");
         free(binsPath);
-        return 1;
+        exit(1);
     }
     // Create new directory
     char command[500];
@@ -100,7 +101,7 @@ int newBin(char binName[50], char newBinContent[500])
     return 0;
 }
 
-int removeBin(char binName[50])
+void removeBin(char binName[50])
 {
     char *binPath = malloc(sizeof(char) * 500);
     getConfigValue("binsPath", &binPath);
@@ -110,7 +111,7 @@ int removeBin(char binName[50])
     {
         printf("Please enter a valid bin name. Use '--operation list' for a list of bins");
         free(binPath);
-        return 1;
+        exit(1);
     }
 
     char command[500];
@@ -122,7 +123,7 @@ int removeBin(char binName[50])
     return 0;
 }
 
-int listBins()
+void listBins()
 {
     char *binsPath = malloc(sizeof(char) * 500);
     getConfigValue("binsPath", &binsPath);
@@ -131,7 +132,7 @@ int listBins()
     {
         printf("Please reconfigure 'binsPath' with a valid path");
         free(binsPath);
-        return 1;
+        exit(1);
     }
 
     char driveLetter[3];
@@ -147,4 +148,13 @@ int listBins()
 
     free(binsPath);
     return 0;
+}
+
+void getBinContent(char binName[50], char copyDest[500])
+{
+    if (!checkValidPath(copyDest))
+    {
+        printf("Please use a valid path for '--copyDest'");
+        exit(1);
+    }
 }
