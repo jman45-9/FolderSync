@@ -11,6 +11,7 @@ int binSetup(FILE *configFile)
 int main(int argc, char *argv[])
 {
     FILE *configFile = fopen("config.yaml", "w");
+    fputs("# file contents are added when setup.exe is run\n", configFile);
     binSetup(configFile);
     fclose(configFile);
     return 0;
