@@ -81,12 +81,13 @@ int newBin(char binName[50], char newBinContent[500])
     system(command);
 
     // Add contents to new directory
-    strcpy(command, "copy ");
+    strcpy(command, "Xcopy ");
     strcat(command, newBinContent);
     strcat(command, " ");
     strcat(command, binsPath);
     strcat(command, "\\");
     strcat(command, binName);
+    strcat(command, " /E /H /C /I");
     system(command);
 
     free(binsPath);
