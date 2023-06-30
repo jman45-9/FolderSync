@@ -36,7 +36,8 @@ int main(int argc, char *argv[])
         }
     }
 
-    printf("%d", newBin(binName, newBinContent));
+    if (newBin(binName, newBinContent))
+        return 1;
 
     return 0;
 }
