@@ -1,11 +1,13 @@
 #include "projectHeaders.h"
 
+void newBin(char binName[50], char newBinPath[500]);
+
 int main(int argc, char *argv[])
 {
     //* getting named params
     char operation[50];
     char binName[50];
-    char newBinPath[200];
+    char newBinPath[500];
     for (int i = 1; i < argc; i += 2)
     {
         if (i + 1 >= argc)
@@ -35,4 +37,10 @@ int main(int argc, char *argv[])
     }
 
     return 0;
+}
+
+void newBin(char binName[50], char newBinPath[500])
+{
+    char command[500];
+    strcpy(command, "mkdir ");
 }

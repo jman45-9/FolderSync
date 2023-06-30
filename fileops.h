@@ -5,5 +5,6 @@
 #include <string.h>
 
 void getConfigValue(char configKey[], char **configValue);
+int checkValidPath(char path[]);
 
 #endif

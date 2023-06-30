@@ -1,4 +1,5 @@
 #include "fileops.h"
+#include <windows.h>
 
 // @param configKey: the key of the key-value pair in the yaml file w/o colon
 // @param configValue: pointer to the string where you want to store the value of the pair
@@ -23,4 +24,17 @@ void getConfigValue(char configKey[], char **configValue)
         fgets(trash, 600, configFile);
     }
     fclose(configFile);
+}
+
+// @param path: file path to check validity of
+int checkValidPath(char path[])
+{
+    DWORD fileAttributes = GetFileAttributes(path);
+
+    if (fileAttributes != INVALID_FILE_ATTRIBUTES &&
+        (fileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+    {
+        return 1;
+    }
+    return 0;
 }
