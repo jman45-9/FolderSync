@@ -59,9 +59,6 @@ int main(int argc, char *argv[])
     else
         printf("Please use a valid operation. Use '--operation help' for a list of commands");
 
-    char *test = malloc(500);
-    getConfigValue("binsPath", &test);
-    printf("%s", test);
     return 0;
 }
 
