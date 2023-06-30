@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "projectHeaders.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,15 +14,15 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        if (strcmp(argv[i], "--operation") == 0)
+        if (!strcmp(argv[i], "--operation"))
         {
             strcpy(operation, argv[i + 1]);
         }
-        else if (strcmp(argv[i], "--binName") == 0)
+        else if (!strcmp(argv[i], "--binName"))
         {
             strcpy(binName, argv[i + 1]);
         }
-        else if (strcmp(argv[i], "--newBinPath") == 0)
+        else if (!strcmp(argv[i], "--newBinPath"))
         {
             strcpy(newBinPath, argv[i + 1]);
         }
@@ -36,5 +34,5 @@ int main(int argc, char *argv[])
         }
     }
 
-        return 0;
+    return 0;
 }

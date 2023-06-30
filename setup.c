@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <string.h>
+#include "projectHeaders.h"
 
 int binSetup(FILE *configFile)
 {
