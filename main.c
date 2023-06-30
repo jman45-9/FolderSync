@@ -37,11 +37,20 @@ int main(int argc, char *argv[])
         }
     }
 
-    // if (newBin(binName, newBinContent))
-    // return 1;
-
-    if (removeBin(binName))
-        return 1;
+    if (!strcmp("newBin", operation))
+    {
+        if (newBin(binName, newBinContent))
+            return 1;
+    }
+    else if (!strcmp("rmBin", operation))
+    {
+        if (removeBin(binName))
+            return 1;
+    }
+    else
+    {
+        printf("Please use a valid operation. Use '--operation help' for a list of commands");
+    }
 
     return 0;
 }
