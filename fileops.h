@@ -4,6 +4,6 @@
 #include <stdio.h>
 #include <string.h>
 
-char *getConfigValue(char configKey[50]);
+void getConfigValue(char configKey[], char **configValue);
 
 #endif
