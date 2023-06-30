@@ -98,7 +98,6 @@ void newBin(char binName[50], char newBinContent[500])
     system(command);
 
     free(binsPath);
-    return 0;
 }
 
 void removeBin(char binName[50])
@@ -120,7 +119,6 @@ void removeBin(char binName[50])
     system(command);
 
     free(binPath);
-    return 0;
 }
 
 void listBins()
@@ -147,7 +145,6 @@ void listBins()
     system(command);
 
     free(binsPath);
-    return 0;
 }
 
 void getBinContent(char binName[50], char copyDest[500])
@@ -157,4 +154,26 @@ void getBinContent(char binName[50], char copyDest[500])
         printf("Please use a valid path for '--copyDest'");
         exit(1);
     }
+
+    char *binPath = malloc(sizeof(char) * 500);
+    getConfigValue("binsPath", &binPath);
+    strcat(binPath, "\\");
+    strcat(binPath, binName);
+    if (!checkValidPath(binPath))
+    {
+        printf("Please enter a valid bin name. Use '--operation list' for a list of bins");
+        free(binPath);
+        exit(1);
+    }
+
+    char command[500];
+    strcpy(command, "Xcopy ");
+    strcat(command, binPath);
+    strcat(command, " ");
+    strcat(command, copyDest);
+    strcat(command, " /E /H /C /I");
+    // printf("%s", command);
+    system(command);
+
+    free(binPath);
 }

@@ -1,6 +1,6 @@
 #include "projectHeaders.h"
 
-int binSetup(FILE *configFile)
+void binSetup(FILE *configFile)
 {
     printf("Where would you like your bins?: ");
     char binPath[500];
