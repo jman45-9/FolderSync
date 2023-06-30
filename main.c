@@ -30,12 +30,11 @@ int main(int argc, char *argv[])
         }
         else
         {
-            printf("%s is not a valid parameter\n", argv[i]);
+            printf("%s is not a valid parameter.\n", argv[i]);
+            printf("Use '--operation help' for a list of valid parameters\n");
+            return 0;
         }
     }
 
-    printf("Operation: %s\n", operation);
-    printf("Bin Name: %s\n", binName);
-    printf("newBinPath: %s\n", newBinPath);
     return 0;
 }
