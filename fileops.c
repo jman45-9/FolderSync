@@ -20,6 +20,9 @@ void getConfigValue(char configKey[], char **configValue)
             fscanf(configFile, "%s", *configValue);
             foundValue = 1;
         }
+        if (fgetc(configFile) == EOF)
+            foundValue = 1;
+        fseek(configFile, -1, SEEK_CUR);
         char trash[600];
         fgets(trash, 600, configFile);
     }
