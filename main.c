@@ -34,10 +34,5 @@ int main(int argc, char *argv[])
         }
     }
 
-    char *test = malloc(sizeof(char) * 500);
-    getConfigValue("test", &test);
-    printf("%s", test);
-
-    free(test);
     return 0;
 }
