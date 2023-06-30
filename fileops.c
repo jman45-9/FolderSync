@@ -5,7 +5,7 @@
 // @param configValue: pointer to the string where you want to store the value of the pair
 void getConfigValue(char configKey[], char **configValue)
 {
-    FILE *configFile = fopen("^\\config.yaml", "r");
+    FILE *configFile = fopen("config.yaml", "r");
     int foundValue = 0;
     char fullConfigKey[50];
     strcpy(fullConfigKey, configKey);
