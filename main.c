@@ -2,6 +2,7 @@
 
 int newBin(char binName[50], char newBinContent[500]);
 int removeBin(char binName[50]);
+int listBins();
 
 int main(int argc, char *argv[])
 {
@@ -45,6 +46,11 @@ int main(int argc, char *argv[])
     else if (!strcmp("rmBin", operation))
     {
         if (removeBin(binName))
+            return 1;
+    }
+    else if (!strcmp("list", operation))
+    {
+        if (listBins())
             return 1;
     }
     else
@@ -113,5 +119,32 @@ int removeBin(char binName[50])
     system(command);
 
     free(binPath);
+    return 0;
+}
+
+int listBins()
+{
+    char *binsPath = malloc(sizeof(char) * 500);
+    getConfigValue("binsPath", &binsPath);
+
+    if (!checkValidPath(binsPath))
+    {
+        printf("Please reconfigure 'binsPath' with a valid path");
+        free(binsPath);
+        return 1;
+    }
+
+    char driveLetter[3];
+    *driveLetter = *binsPath;
+    *(driveLetter + 1) = ':';
+    *(driveLetter + 2) = '\0';
+    system(driveLetter);
+
+    char command[500];
+    strcpy(command, "dir /ad /b ");
+    strcat(command, binsPath);
+    system(command);
+
+    free(binsPath);
     return 0;
 }
