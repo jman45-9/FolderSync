@@ -1,6 +1,7 @@
 #include "projectHeaders.h"
 
 int newBin(char binName[50], char newBinContent[500]);
+int removeBin(char binName[50]);
 
 int main(int argc, char *argv[])
 {
@@ -36,7 +37,10 @@ int main(int argc, char *argv[])
         }
     }
 
-    if (newBin(binName, newBinContent))
+    // if (newBin(binName, newBinContent))
+    // return 1;
+
+    if (removeBin(binName))
         return 1;
 
     return 0;
@@ -77,5 +81,27 @@ int newBin(char binName[50], char newBinContent[500])
     system(command);
 
     free(binsPath);
+    return 0;
+}
+
+int removeBin(char binName[50])
+{
+    char *binPath = malloc(sizeof(char) * 500);
+    getConfigValue("binsPath", &binPath);
+    strcat(binPath, "\\");
+    strcat(binPath, binName);
+    if (!checkValidPath(binPath))
+    {
+        printf("Please enter a valid bin name. Use '--operation list' for a list of bins");
+        free(binPath);
+        return 1;
+    }
+
+    char command[500];
+    strcpy(command, "rmdir /s /q ");
+    strcat(command, binPath);
+    system(command);
+
+    free(binPath);
     return 0;
 }
