@@ -172,7 +172,7 @@ void getBinContent(char binName[50], char copyDest[500])
     strcat(command, " ");
     strcat(command, copyDest);
     strcat(command, " /E /H /C /I");
-    // printf("%s", command);
+    printf("command: %s", command);
     system(command);
 
     free(binPath);
